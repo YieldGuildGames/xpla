@@ -9,7 +9,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout 🛎️
-        uses: actions/checkout@v2.3.1
+        uses: actions/checkout@v3
+      - name: Set up Cloud SDK
+        uses: google-github-actions/setup-gcloud@v0
+        with:
+          version: "290.0.1" # optional, if not provided -> resolves to latest version
+          service_account_key: ${{ secrets.CDBOT_APPKEY }}
+          project_id: yggproj
+      - name: Configure Docker to use gcloud command-line
+        run: gcloud --quiet auth configure-docker
+
+      - run: echo "MONTH=$(date +%m)" >> $GITHUB_ENV
       - name: Build docker image
         run: make image
       - name: Push docker image

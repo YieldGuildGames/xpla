@@ -1,6 +1,6 @@
 PROJECT			:= yggproj
 VERSION	    	:= $(shell cat version.txt)
-IMAGE_NAME 		?= gcri.io/${PROJECT}/xpla
+IMAGE_NAME 		?= gcr.io/${PROJECT}/xpla
 IMAGE_VERSION 	?= $(shell git describe --tags --always --dirty --abbrev=6)-${VERSION}
 IMAGE			?= ${IMAGE_NAME}:${IMAGE_VERSION}
 
