@@ -5,7 +5,7 @@ name: Test Image Build
 
 on: commit
 jobs:
-  build:
+  push:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout 🛎️
