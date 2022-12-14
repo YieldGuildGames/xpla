@@ -3,6 +3,9 @@
 
 name: Push xpla docker image
 
+env:
+  PROJECT: yggproj
+
 on: push
 jobs:
   xpla-docker:
