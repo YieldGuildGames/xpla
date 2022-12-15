@@ -1,0 +1,18 @@
+version: "3.7"
+services:
+  node1:
+    container_name: xpla-validator
+    image: ${IMAGE}
+    logging:
+        driver: "json-file"
+        options:
+            max-size: "100m"
+            max-file: "5"
+    command: xplad start
+    volumes:
+      - /mnt/data/xpla:/root/.xpla
+      - /mnt/data/genesis:/root/.genesis
+    ports:
+      - "8545:8545"
+      - "9090:9090"
+      - "26656:26656"
