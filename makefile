@@ -11,7 +11,7 @@ current: xpla
 	cd xpla; git reset --hard ${VERSION}
 
 image: current
-	cd xpla; docker build --force-rm -t "${IMAGE}" .
+	cd xpla; docker build --force-rm -f ../Dockerfile -t "${IMAGE}" .
 
 push: image
 	docker push ${IMAGE}
