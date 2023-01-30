@@ -8,7 +8,7 @@ xpla:
 	git clone https://github.com/xpladev/xpla
 
 current: xpla
-	cd xpla; git reset --hard ${VERSION}
+	cd xpla; git fetch; git reset --hard ${VERSION}
 
 image: current
 	cd xpla; docker build --force-rm -f ../Dockerfile -t "${IMAGE}" .
