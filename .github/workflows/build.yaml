@@ -10,17 +10,27 @@ on: push
 jobs:
   xpla-docker:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout 🛎️
         uses: actions/checkout@v3
-      - name: Set up Cloud SDK
-        uses: google-github-actions/setup-gcloud@v0
+
+      - id: 'auth'
+        uses: 'google-github-actions/auth@v1'
         with:
-          #version: "290.0.1" # optional, if not provided -> resolves to latest version
-          service_account_key: ${{ secrets.GCLOUD_CDBOT_SERVICE_ACCOUNT }}
-          project_id: yggproj
-      - name: Configure Docker to use gcloud command-line
-        run: gcloud --quiet auth configure-docker
+          token_format: 'access_token'
+          credentials_json: '${{ secrets.GCP_GITHUB_ACTION }}'
+      # - name: Set up Cloud SDK
+      #   uses: google-github-actions/setup-gcloud@v1
+      # - name: Configure Docker to use gcloud command-line
+      #   run: gcloud --quiet auth configure-docker
+
+      # This example uses the docker login action
+      - uses: 'docker/login-action@v1'
+        with:
+          registry: 'gcr.io' # or REGION-docker.pkg.dev
+          username: 'oauth2accesstoken'
+          password: '${{ steps.auth.outputs.access_token }}'
 
       - run: echo "MONTH=$(date +%m)" >> $GITHUB_ENV
       - name: Push docker image
