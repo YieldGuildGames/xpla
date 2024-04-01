@@ -24,7 +24,7 @@ COPY . .
 # Download dependencies and CosmWasm libwasmvm if found.
 RUN set -eux; \    
     export ARCH=$(uname -m); \
-    WASM_VERSION=1.3.1
+    WASM_VERSION=v1.3.1
     if [ ! -z "${WASM_VERSION}" ]; then \
       wget -O /lib/libwasmvm_muslc.a https://github.com/CosmWasm/wasmvm/releases/download/${WASM_VERSION}/libwasmvm_muslc.${ARCH}.a; \      
     fi; \
