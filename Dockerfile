@@ -7,7 +7,7 @@
 #   docker run --rm -it --env-file=path/to/.env --name xpla-localnet xpladev/xpla
 
 ### BUILD
-FROM golang:1.19-alpine AS build
+FROM golang:1.20-alpine3.17 AS build
 
 # Create appuser.
 RUN adduser -D -g '' valiuser
@@ -24,7 +24,7 @@ COPY . .
 # Download dependencies and CosmWasm libwasmvm if found.
 RUN set -eux; \    
     export ARCH=$(uname -m); \
-    WASM_VERSION=v1.3.1; \
+    WASM_VERSION=v1.5.1; \
     wget -O /lib/libwasmvm_muslc.a https://github.com/CosmWasm/wasmvm/releases/download/${WASM_VERSION}/libwasmvm_muslc.${ARCH}.a; \
     go mod download;
 RUN go env
