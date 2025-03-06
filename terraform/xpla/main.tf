@@ -15,7 +15,7 @@ provider "google" {
 
 # Local variables
 locals {
-  vm_name = "xpla002"
+  vm_name      = "xpla002"
   network_tags = ["rpc"]
   labels = {
     validator = "xpla"

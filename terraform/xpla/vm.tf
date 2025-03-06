@@ -11,7 +11,7 @@ resource "google_compute_disk" "boot_disk" {
 
 # Data disk for the xplachain
 resource "google_compute_disk" "data_disk" {
-  name = "xplachain001"
+  name = "xplachain002"
   type = "pd-standard"
   size = var.data_disk_size
   zone = var.zone
@@ -36,7 +36,7 @@ resource "google_compute_instance" "xpla_validator" {
 
   attached_disk {
     source      = google_compute_disk.data_disk.self_link
-    device_name = "xplachain001"
+    device_name = "xplachain002"
     mode        = "READ_WRITE"
   }
 
@@ -56,7 +56,7 @@ EOF
   }
 
   service_account {
-    email  = "${data.google_project.project.number}-compute@developer.gserviceaccount.com"
+    email = "${data.google_project.project.number}-compute@developer.gserviceaccount.com"
     scopes = [
       "https://www.googleapis.com/auth/devstorage.read_only",
       "https://www.googleapis.com/auth/logging.write",
@@ -114,7 +114,7 @@ EOF
     COMPOSE
 
     # Set the device name for the attached disk
-    DEVICE_NAME=$(ls -l /dev/disk/by-id/google-xplachain001 | awk '{print $11}' | xargs basename)
+    DEVICE_NAME=$(ls -l /dev/disk/by-id/google-xplachain002 | awk '{print $11}' | xargs basename)
     if [ -b "/dev/$DEVICE_NAME" ]; then
       # Check if disk is already formatted
       if ! blkid "/dev/$DEVICE_NAME"; then
