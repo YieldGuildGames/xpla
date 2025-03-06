@@ -1,4 +1,4 @@
-PROJECT			:= yggproj
+PROJECT			:= xpla-371616
 VERSION	    	:= $(shell cat version.txt)
 IMAGE_NAME 		?= gcr.io/${PROJECT}/xpla
 IMAGE_VERSION 	?= $(shell git describe --tags --always --dirty --abbrev=6)-${VERSION}
