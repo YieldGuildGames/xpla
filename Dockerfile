@@ -30,7 +30,7 @@ RUN set -eux; \
 RUN go env
 
 # Build executable
-RUN LEDGER_ENABLED=false BUILD_TAGS=muslc LDFLAGS='-linkmode=external -extldflags "-L/usr/lib -lwasmvm_muslc.x86_64 -L/mimalloc/build -lmimalloc -Wl,-z,muldefs -static"' make install
+RUN LEDGER_ENABLED=false BUILD_TAGS=muslc LDFLAGS='-linkmode=external -extldflags "-L/mimalloc/build -lmimalloc -Wl,-z,muldefs -static"' make install
 
 # --------------------------------------------------------
 FROM alpine:3.21 AS runtime
