@@ -12,7 +12,7 @@ FROM golang:1.23-alpine3.21 AS build
 # Create appuser.
 RUN adduser -D -g '' valiuser
 # Install required binaries
-RUN apk add --update --no-cache zip git make cmake build-base linux-headers musl-dev libc-dev
+RUN apk add --update --no-cache zip git make cmake build-base linux-headers musl-dev libc-dev musl
 
 WORKDIR /
 RUN git clone --depth 1 https://github.com/microsoft/mimalloc; cd mimalloc; mkdir build; cd build; cmake ..; make -j$(nproc); make install
