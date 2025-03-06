@@ -25,7 +25,7 @@ COPY . .
 RUN set -eux; \    
     export ARCH=$(uname -m); \
     WASM_VERSION=v1.5.9; \
-    wget -O /lib/libwasmvm_muslc.a https://github.com/CosmWasm/wasmvm/releases/download/${WASM_VERSION}/libwasmvm_muslc.${ARCH}.a; \
+    wget -O /lib/libwasmvm_muslc.x86_64.a https://github.com/CosmWasm/wasmvm/releases/download/${WASM_VERSION}/libwasmvm_muslc.${ARCH}.a; \
     go mod download;
 RUN go env
 
