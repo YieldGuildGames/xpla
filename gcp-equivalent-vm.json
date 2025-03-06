@@ -1,0 +1,141 @@
+{
+  "canIpForward": false,
+  "confidentialInstanceConfig": {
+    "enableConfidentialCompute": false
+  },
+  "cpuPlatform": "Intel Broadwell",
+  "creationTimestamp": "2022-12-14T08:24:20.693-08:00",
+  "deletionProtection": false,
+  "description": "",
+  "disks": [
+    {
+      "architecture": "X86_64",
+      "guestOsFeatures": [
+        {
+          "type": "UEFI_COMPATIBLE"
+        },
+        {
+          "type": "VIRTIO_SCSI_MULTIQUEUE"
+        },
+        {
+          "type": "GVNIC"
+        }
+      ],
+      "type": "PERSISTENT",
+      "licenses": ["projects/debian-cloud/global/licenses/debian-11-bullseye"],
+      "deviceName": "xpla001",
+      "autoDelete": true,
+      "source": "projects/xpla-371616/zones/us-central1-a/disks/xpla001",
+      "index": 0,
+      "boot": true,
+      "kind": "compute#attachedDisk",
+      "mode": "READ_WRITE",
+      "interface": "SCSI",
+      "diskSizeGb": "10"
+    },
+    {
+      "type": "PERSISTENT",
+      "deviceName": "xplachain001",
+      "autoDelete": false,
+      "source": "projects/xpla-371616/zones/us-central1-a/disks/xplachain001",
+      "index": 1,
+      "boot": false,
+      "kind": "compute#attachedDisk",
+      "mode": "READ_WRITE",
+      "interface": "SCSI",
+      "diskSizeGb": "1000"
+    }
+  ],
+  "displayDevice": {
+    "enableDisplay": false
+  },
+  "fingerprint": "ZJyIGEgRgTs=",
+  "id": "6774000372063422044",
+  "keyRevocationActionType": "NONE",
+  "kind": "compute#instance",
+  "labelFingerprint": "s1ItAFw5vq0=",
+  "labels": {
+    "validator": "xpla",
+    "node": "xpla"
+  },
+  "lastStartTimestamp": "2022-12-14T08:24:26.910-08:00",
+  "machineType": "projects/xpla-371616/zones/us-central1-a/machineTypes/e2-standard-4",
+  "metadata": {
+    "fingerprint": "FIFM0vf7fBs=",
+    "kind": "compute#metadata",
+    "items": [
+      {
+        "value": "deezle:ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBGgeZlDiX9xfAk6lzdXWEJKXEcaHAsg8fOiI0Wu8vkjAMSBs7VfhbIRBvGbHiTheNfRERuVtMMbjOtM86CM5hos= google-ssh {\"userName\":\"deezle@yieldguild.games\",\"expireOn\":\"2025-01-17T16:57:20+0000\"}\ndeezle:ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCAfoaDFW8qAc+q59IiISPgRDEqzHAevQOALkmwXtOJCI9BpPXxGwGsVH1Xep7IaAvRbWu+1BBhC8lpG+teDHWIQcS2Nc+IgWwzpq0J1HIFtGv9fq+RYn1QMUe2CfRuongZnGcTktNgldKom0XYTqsHna3JyD7XhZM4Aj/hqHL0wct3lI/iHp/D9/LAjGODYUQT2woovDp5lfJ8cE+b1onG99hBe964gqz22FdL0bb7aE3x9en679FqsavjN9nD9bP6m0CEC4MCHk9AwDac0QYxvDdF4O+/b2QOkw3yow9ZsKQNoX8TskVF74LiPZOFEovKF/ogVb9iFU6gv1pnZ60D google-ssh {\"userName\":\"deezle@yieldguild.games\",\"expireOn\":\"2025-01-17T16:57:24+0000\"}",
+        "key": "ssh-keys"
+      }
+    ]
+  },
+  "name": "xpla001",
+  "networkInterfaces": [
+    {
+      "stackType": "IPV4_ONLY",
+      "name": "nic0",
+      "network": "projects/xpla-371616/global/networks/default",
+      "accessConfigs": [
+        {
+          "name": "External NAT",
+          "type": "ONE_TO_ONE_NAT",
+          "natIP": "104.154.254.45",
+          "kind": "compute#accessConfig",
+          "networkTier": "PREMIUM"
+        }
+      ],
+      "subnetwork": "projects/xpla-371616/regions/us-central1/subnetworks/default",
+      "networkIP": "10.128.0.2",
+      "fingerprint": "uegHDRSdCNM=",
+      "kind": "compute#networkInterface"
+    }
+  ],
+  "reservationAffinity": {
+    "consumeReservationType": "ANY_RESERVATION"
+  },
+  "resourceStatus": {},
+  "scheduling": {
+    "onHostMaintenance": "MIGRATE",
+    "provisioningModel": "STANDARD",
+    "automaticRestart": true,
+    "preemptible": false
+  },
+  "selfLink": "projects/xpla-371616/zones/us-central1-a/instances/xpla001",
+  "serviceAccounts": [
+    {
+      "email": "522602868666-compute@developer.gserviceaccount.com",
+      "scopes": [
+        "https://www.googleapis.com/auth/devstorage.read_only",
+        "https://www.googleapis.com/auth/logging.write",
+        "https://www.googleapis.com/auth/monitoring.write",
+        "https://www.googleapis.com/auth/servicecontrol",
+        "https://www.googleapis.com/auth/service.management.readonly",
+        "https://www.googleapis.com/auth/trace.append"
+      ]
+    }
+  ],
+  "shieldedInstanceConfig": {
+    "enableSecureBoot": false,
+    "enableVtpm": true,
+    "enableIntegrityMonitoring": true
+  },
+  "shieldedInstanceIntegrityPolicy": {
+    "updateAutoLearnPolicy": true
+  },
+  "shieldedVmConfig": {
+    "enableSecureBoot": false,
+    "enableVtpm": true,
+    "enableIntegrityMonitoring": true
+  },
+  "shieldedVmIntegrityPolicy": {
+    "updateAutoLearnPolicy": true
+  },
+  "startRestricted": false,
+  "status": "RUNNING",
+  "tags": {
+    "items": ["rpc"],
+    "fingerprint": "1ucN5UNtfho="
+  },
+  "zone": "projects/xpla-371616/zones/us-central1-a"
+}
