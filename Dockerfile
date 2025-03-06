@@ -30,10 +30,10 @@ RUN set -eux; \
 RUN go env
 
 # Build executable
-RUN LEDGER_ENABLED=false BUILD_TAGS=muslc LDFLAGS='-linkmode=external -extldflags "-L/mimalloc/build -lmimalloc -Wl,-z,muldefs -static"' make install
+RUN LEDGER_ENABLED=false BUILD_TAGS=muslc LDFLAGS='-linkmode=external -extldflags "-L/mimalloc/build -lmimalloc -L/usr/lib -lwasmvm_muslc.x86_64 -Wl,-z,muldefs -static"' make install
 
 # --------------------------------------------------------
-FROM alpine:3.18 AS runtime
+FROM alpine:3.21 AS runtime
 
 COPY --from=build /go/bin/xplad /usr/bin/xplad
 #COPY --from=build /localnet/integration_test /opt/integration_test
