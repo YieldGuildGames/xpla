@@ -19,7 +19,7 @@ jobs:
         uses: 'google-github-actions/auth@v1'
         with:
           token_format: 'access_token'
-          credentials_json: '${{ secrets.GCP_GITHUB_ACTION }}'
+          credentials_json: '${{ secrets.GCP_XPLA_PROJ_ACTION }}'
       # - name: Set up Cloud SDK
       #   uses: google-github-actions/setup-gcloud@v1
       # - name: Configure Docker to use gcloud command-line
