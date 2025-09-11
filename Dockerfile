@@ -7,7 +7,7 @@
 #   docker run --rm -it --env-file=path/to/.env --name xpla-localnet xpladev/xpla
 
 ### BUILD
-FROM golang:1.23.6-alpine AS build
+FROM golang:1.23.10-alpine AS build
 
 # Create appuser.
 RUN adduser -D -g '' valiuser
