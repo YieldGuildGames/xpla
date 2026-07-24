@@ -1,0 +1,23 @@
+FROM alpine:3.24.1 AS downloader
+
+ARG XPLA_VERSION=v1.11.3
+ARG XPLA_SHA256=ac862456948a3ff351e4d9b28aa1060bf15c33bbfb33c611aa25e6dafc62fdba
+
+RUN apk add --no-cache ca-certificates wget \
+    && wget -O /tmp/xpla.tar.gz \
+       "https://github.com/xpladev/xpla/releases/download/${XPLA_VERSION}/xpla_${XPLA_VERSION}_Linux_x86_64.tar.gz" \
+    && echo "${XPLA_SHA256}  /tmp/xpla.tar.gz" | sha256sum -c - \
+    && tar -xzf /tmp/xpla.tar.gz -C /usr/local/bin xplad \
+    && chmod 0755 /usr/local/bin/xplad
+
+FROM alpine:3.24.1 AS runtime
+
+RUN apk add --no-cache ca-certificates
+
+COPY --from=downloader /usr/local/bin/xplad /usr/bin/xplad
+
+EXPOSE 9090
+EXPOSE 8545
+EXPOSE 26656
+
+CMD ["/usr/bin/xplad", "version"]
