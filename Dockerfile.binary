@@ -1,12 +1,21 @@
 FROM alpine:3.24.1 AS downloader
 
-ARG XPLA_VERSION=v1.12.0
-ARG XPLA_SHA256=fe4864c00815cf84e98873345bd83a0fd3ed22330db6e10d5b4c21d380eab1ee
+ARG XPLA_VERSION=v1.12.2
+
+# Temporary security-patch distribution: HTTP download without checksum verification.
+# Restore the GitHub download and verification below when an official asset is available.
+# The saved checksum is for v1.12.0 ONLY; replace it for the release being restored.
+# ARG XPLA_SHA256=fe4864c00815cf84e98873345bd83a0fd3ed22330db6e10d5b4c21d380eab1ee
+# RUN apk add --no-cache ca-certificates wget \
+#     && wget -O /tmp/xpla.tar.gz \
+#        "https://github.com/xpladev/xpla/releases/download/${XPLA_VERSION}/xpla_${XPLA_VERSION}_Linux_x86_64.tar.gz" \
+#     && echo "${XPLA_SHA256}  /tmp/xpla.tar.gz" | sha256sum -c - \
+#     && tar -xzf /tmp/xpla.tar.gz -C /usr/local/bin xplad \
+#     && chmod 0755 /usr/local/bin/xplad
 
 RUN apk add --no-cache ca-certificates wget \
     && wget -O /tmp/xpla.tar.gz \
-       "https://github.com/xpladev/xpla/releases/download/${XPLA_VERSION}/xpla_${XPLA_VERSION}_Linux_x86_64.tar.gz" \
-    && echo "${XPLA_SHA256}  /tmp/xpla.tar.gz" | sha256sum -c - \
+       "http://asset.delightlabs.io/conx/release/mainnet/xpla_${XPLA_VERSION}_Linux_x86_64.tar.gz" \
     && tar -xzf /tmp/xpla.tar.gz -C /usr/local/bin xplad \
     && chmod 0755 /usr/local/bin/xplad
 
